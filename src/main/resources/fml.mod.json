@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "mob_dismemberment",
+  "version": "${version}",
+  "name": "MobDismemberment",
+  "description": "This is an mob_dismemberment description! Tell everyone what your mod is about!",
+  "authors": [
+    "vbonedra"
+  ],
+  "contact": {
+    "homepage": "https://minecraftistooeasy.github.io/",
+    "sources": "https://github.com/MinecraftIsTooEasy/MobDismemberment"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/mob_dismemberment/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "vbonedra.mob_dismemberment.MobDismembermentMod"
+    ]
+  },
+  "mixins": [
+    "mob_dismemberment.mixins.json"
+  ],
+  "depends": {
+    "fishmodloader": ">=3.4.0",
+    "minecraft": "1.6.4-mite",
+    "java": ">=17",
+    "many-lib": ">=2.0.0",
+    "rusted_iron_core": ">=1.3.5"
+  },
+  "suggests": {
+    "another-mod": "*"
+  },
+  "accessWidener": "mob_dismemberment.accesswidener"
+}
