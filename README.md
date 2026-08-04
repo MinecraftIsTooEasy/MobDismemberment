@@ -11,6 +11,7 @@ Keep in mind that this mod isn't perfect yet, it has some known minor bugs and m
 ###### This mod is inspired by IChun's Mob Dismemberment which added only zombie, skeleton and creeper body parts, but this mod extends it to almost all mobs.
 
 ## Update v1.0.0 plans:
+- Fix Sheep gib texture
 - Test WAILA mod compatibility, gib might be treated as normal mob therefore might have tooltip with name and other properties
 - Test server compatibility
 - Test mod compatibility with custom mobs and modified vanilla mob textures
