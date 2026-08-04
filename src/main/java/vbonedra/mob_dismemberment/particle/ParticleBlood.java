@@ -59,7 +59,12 @@ public class ParticleBlood extends EntityFX {
 
         if(this.motionX != 0.0D && this.motionZ != 0.0D && !this.onGround) {
             this.motionY -= this.particleGravity;
-            this.moveEntity(this.motionX, this.motionY, this.motionZ);
+            try {
+                this.moveEntity(this.motionX, this.motionY, this.motionZ);
+            } catch (IndexOutOfBoundsException e) {
+                this.setDead();
+                return;
+            }
             this.motionX *= 0.98;
             this.motionY *= 0.98;
             this.motionZ *= 0.98;

@@ -45,7 +45,8 @@ public class EventHandlerMain {
                 double searchRadius = 4.0D;
                 List closeEntities = entity.worldObj.getEntitiesWithinAABBExcludingEntity(entity, entity.boundingBox.expand(searchRadius, searchRadius, searchRadius));
                 if (closeEntities != null) {
-                    for (Object obj : closeEntities) {
+                    List safeClose = new ArrayList<>(closeEntities);
+                    for (Object obj : safeClose) {
                         if (obj != null && obj.getClass().getName().contains("Zombie")) {
                             return;
                         }
@@ -66,8 +67,10 @@ public class EventHandlerMain {
             return;
         }
         WorldClient world = mc.theWorld;
-        for (int i = 0; i < world.loadedEntityList.size(); i++) {
-            Entity ent = (Entity)world.loadedEntityList.get(i);
+        List<Entity> safeEntityList = new ArrayList<>(world.loadedEntityList);
+        for (int i = 0; i < safeEntityList.size(); i++) {
+            Entity ent = safeEntityList.get(i);
+            if (ent == null) continue;
             if (ent instanceof EntityCreeper || ent instanceof EntityTNTPrimed || ent instanceof EntityMinecartTNT) {
                 if (!this.explosionSources.contains(ent)) {
                     this.explosionSources.add(ent);
@@ -89,7 +92,8 @@ public class EventHandlerMain {
                         List closeEntities = living.worldObj.getEntitiesWithinAABBExcludingEntity(living, living.boundingBox.expand(searchRadius, searchRadius, searchRadius));
                         boolean infected = false;
                         if (closeEntities != null) {
-                            for (Object obj : closeEntities) {
+                            List safeClose = new ArrayList<>(closeEntities);
+                            for (Object obj : safeClose) {
                                 if (obj != null && obj.getClass().getName().contains("Zombie")) {
                                     infected = true;
                                     break;
@@ -136,14 +140,15 @@ public class EventHandlerMain {
             }
         }
         Iterator<Entry<EntityLivingBase, Integer>> ite = this.dismemberTimeout.entrySet().iterator();
-        if (ite.hasNext()) {
+        while (ite.hasNext()) {
             Entry<EntityLivingBase, Integer> e = ite.next();
             e.setValue(e.getValue() - 1);
             e.getKey().hurtTime = 0;
             e.getKey().deathTime = 0;
             Entity explo = null;
             double dist = 1000.0D;
-            for (Entry<Entity, Integer> e1 : this.exploTime.entrySet()) {
+            List<Entry<Entity, Integer>> safeExploTime = new ArrayList<>(this.exploTime.entrySet());
+            for (Entry<Entity, Integer> e1 : safeExploTime) {
                 double mobDist = e1.getKey().getDistanceToEntity(e.getKey());
                 if (mobDist < 10.0D && mobDist < dist) {
                     dist = mobDist;

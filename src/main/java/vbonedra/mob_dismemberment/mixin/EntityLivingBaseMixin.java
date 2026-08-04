@@ -13,8 +13,10 @@ public class EntityLivingBaseMixin {
     @Inject(method = "onDeath", at = @At("HEAD"))
     private void injectOnDeath(DamageSource source, CallbackInfo ci) {
         EntityLivingBase entity = (EntityLivingBase) (Object) this;
-        if (MobDismembermentMod.EventHandlerMain != null) {
-            MobDismembermentMod.EventHandlerMain.onLivingDeath(entity);
+        if (entity.worldObj != null && entity.worldObj.isWorldClient()) {
+            if (MobDismembermentMod.EventHandlerMain != null) {
+                MobDismembermentMod.EventHandlerMain.onLivingDeath(entity);
+            }
         }
     }
 }

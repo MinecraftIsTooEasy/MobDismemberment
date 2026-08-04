@@ -64,7 +64,8 @@ public class RenderGibBase extends Render {
         }
         GL11.glColor4f(1.0F, 1.0F, 1.0F, alpha);
         GL11.glAlphaFunc(GL11.GL_GREATER, 0.003921569F);
-        GL11.glTranslated(par2, par4 + (gib.height * 0.5F), par6);
+        double randomYOffset = -((gib.entityId * 4513) % 1001 / 1000.0D) * 0.0625D;
+        GL11.glTranslated(par2, par4 + (gib.height * 0.5F) + randomYOffset, par6);
         float renderYaw = gib.prevRotationYaw + (gib.rotationYaw - gib.prevRotationYaw) * par9;
         float renderPitch = gib.prevRotationPitch + (gib.rotationPitch - gib.prevRotationPitch) * par9;
         GL11.glRotatef(180.0F - renderYaw, 0.0F, 1.0F, 0.0F);
