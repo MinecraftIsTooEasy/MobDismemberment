@@ -12,6 +12,8 @@ import static vbonedra.mob_dismemberment.MobDismembermentMod.MOD_NAME;
 public class MDConfig extends SimpleConfigs {
     public static final ConfigInteger gibTime = new ConfigInteger("Gib Time", 1200, 0, 24000);
     public static final ConfigInteger gibGroundTime = new ConfigInteger("Gib Ground Time", 600, 0, 24000);
+    public static final ConfigBoolean gibFadeoutTransparency = new ConfigBoolean("Gib Fadeout Transparency", true);
+    public static final ConfigBoolean gibFadeoutScale = new ConfigBoolean("Gib Fadeout Scale", true);
     public static final ConfigBoolean blood = new ConfigBoolean("Blood", true);
     public static final ConfigInteger bloodTime = new ConfigInteger("Blood Time", 600, 0, 24000);
     public static final ConfigInteger bloodCount = new ConfigInteger("Blood Count", 250, 1, 1000);
@@ -42,12 +44,14 @@ public class MDConfig extends SimpleConfigs {
         MainBase = List.of(
                 gibTime,
                 gibGroundTime,
+                gibFadeoutTransparency,
+                gibFadeoutScale,
+                gibPushing,
                 blood,
                 bloodTime,
                 bloodCount,
                 bloodScale,
-                greenBlood,
-                gibPushing
+                greenBlood
         );
 
         Total.addAll(MainBase);

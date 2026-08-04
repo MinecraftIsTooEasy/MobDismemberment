@@ -6,7 +6,6 @@ import vbonedra.mob_dismemberment.entity.*;
 import vbonedra.mob_dismemberment.model.*;
 import vbonedra.mob_dismemberment.render.RenderGibBase;
 import vbonedra.mob_dismemberment.render.RenderGibBlaze;
-import vbonedra.mob_dismemberment.render.RenderGibGhast;
 import vbonedra.mob_dismemberment.render.RenderGibMagmaCube;
 
 import static vbonedra.mob_dismemberment.MobDismembermentMod.MDLOGGER;
@@ -26,7 +25,7 @@ public class MDEntityRenderer {
         registry.register(EntityGibSquid.class, new RenderGibBase(new ModelGibSquid(), new ResourceLocation("textures/entity/squid.png")));
         registry.register(EntityGibOcelot.class, new RenderGibBase(new ModelGibOcelot(), new ResourceLocation("textures/entity/cat/ocelot.png")));
         registry.register(EntityGibEnderman.class, new RenderGibBase(new ModelGibEnderman(), new ResourceLocation("textures/entity/enderman/enderman.png")));
-        registry.register(EntityGibGhast.class, new RenderGibGhast(new ModelGibGhast(), new ResourceLocation("textures/entity/ghast/ghast.png")));
+        registry.register(EntityGibGhast.class, new RenderGibBase(new ModelGibGhast(), new ResourceLocation("textures/entity/ghast/ghast.png")));
         registry.register(EntityGibPig.class, new RenderGibBase(new ModelGibPig(), new ResourceLocation("textures/entity/pig/pig.png")));
         registry.register(EntityGibSheep.class, new RenderGibBase(new ModelGibSheep(), new ResourceLocation("textures/entity/sheep/sheep.png")));
         registry.register(EntityGibSkeleton.class, new RenderGibBase(new ModelGibSkeleton(), new ResourceLocation("textures/entity/skeleton/skeleton.png")));

@@ -1,12 +1,8 @@
 package vbonedra.mob_dismemberment.render;
 
+import net.minecraft.*;
+import vbonedra.mob_dismemberment.config.MDConfig;
 import vbonedra.mob_dismemberment.entity.EntityGibBase;
-import net.minecraft.Render;
-import net.minecraft.RenderManager;
-import net.minecraft.Entity;
-import net.minecraft.ResourceLocation;
-import net.minecraft.OpenGlHelper;
-import net.minecraft.ModelBase;
 import org.lwjgl.opengl.GL11;
 
 public class RenderGibBase extends Render {
@@ -51,18 +47,18 @@ public class RenderGibBase extends Render {
         }
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        float alpha = 1.0F;
-        int maxGroundTime = vbonedra.mob_dismemberment.config.MDConfig.gibGroundTime.getIntegerValue();
+        float fade_out_factor = 1.0F;
+        int maxGroundTime = MDConfig.gibGroundTime.getIntegerValue();
         if (gib.groundTime >= maxGroundTime) {
-            alpha = 1.0F - (gib.groundTime - maxGroundTime + par9) / 20F;
-            if (alpha < 0.0F) {
-                alpha = 0.0F;
+            fade_out_factor = 1.0F - (gib.groundTime - maxGroundTime + par9) / 20F;
+            if (fade_out_factor < 0.0F) {
+                fade_out_factor = 0.0F;
             }
-            if (alpha > 1.0F) {
-                alpha = 1.0F;
+            if (fade_out_factor > 1.0F) {
+                fade_out_factor = 1.0F;
             }
         }
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, alpha);
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, MDConfig.gibFadeoutTransparency.getBooleanValue() ? fade_out_factor : 1);
         GL11.glAlphaFunc(GL11.GL_GREATER, 0.003921569F);
         double randomYOffset = -((gib.entityId * 4513) % 1001 / 1000.0D) * 0.0625D;
         GL11.glTranslated(par2, par4 + (gib.height * 0.5F) + randomYOffset, par6);
@@ -71,6 +67,8 @@ public class RenderGibBase extends Render {
         GL11.glRotatef(180.0F - renderYaw, 0.0F, 1.0F, 0.0F);
         GL11.glRotatef(-renderPitch, 1.0F, 0.0F, 0.0F);
         GL11.glScalef(-1.0F, -1.0F, 1.0F);
+        float scale = getScale(gib) * (MDConfig.gibFadeoutScale.getBooleanValue() ? fade_out_factor : 1);
+        GL11.glScalef(scale, scale, scale);
         this.modelGib.render(gib, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
         if (parentRenderer != null && targetTexture != null) {
             try {
@@ -104,4 +102,32 @@ public class RenderGibBase extends Render {
         GL11.glPopMatrix();
         GL11.glEnable(GL11.GL_CULL_FACE);
     }
+
+    private static float getScale(EntityGibBase gib) {
+        if (gib.parent == null) {
+            return 1.0F;
+        }
+
+        Object parentObj = gib.parent;
+        Class<?> parentClass = parentObj.getClass();
+
+        if (parentClass == EntityGhast.class) {
+            return 4.0F;
+        }
+        if (parentClass == EntityCaveSpider.class) {
+            return 0.7F;
+        }
+        if (parentClass == EntityWoodSpider.class
+                || parentClass == EntityBlackWidowSpider.class
+                || parentClass == EntityPhaseSpider.class) {
+            return 0.6F;
+        }
+
+        if (parentObj instanceof EntityBat bat) {
+            return 0.35F * bat.getScaleFactor();
+        }
+
+        return 1.0F;
+    }
+
 }
