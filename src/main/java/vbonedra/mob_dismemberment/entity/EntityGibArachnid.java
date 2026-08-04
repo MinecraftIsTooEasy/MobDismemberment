@@ -19,7 +19,7 @@ public class EntityGibArachnid extends EntityGibBase {
         double cos = Math.cos(mathYaw);
         double sin = Math.sin(mathYaw);
 
-        // gibType: 0 = Head, 1 = Neck, 2 = Abdomen/Body, 3-10 = Legs 1-8
+        // gibType: 0 = Head, 1 = Neck, 2 = Body, 3-10 = Legs 1-8
         if (gibType == 0) {
             this.setSize(0.5F, 0.5F);
             this.rotationYaw = gibParent.rotationYaw;

@@ -87,10 +87,16 @@ public abstract class EntityGibBase extends Entity {
 
     @Override
     public void onUpdate() {
+        if (this.worldObj.isWorldServer()) {
+            this.setDead();
+            return;
+        }
+
         if (this.parent == null) {
             this.setDead();
             return;
         }
+
         if (this.explosion) {
             this.motionX *= 1D / 0.92D;
             this.motionY *= 1D / 0.95D;
@@ -110,17 +116,25 @@ public abstract class EntityGibBase extends Entity {
         this.motionX *= 0.91D;
         this.motionZ *= 0.91D;
 
-        if (this.inWater) {
-            this.motionY = 0.3D;
-            this.pitchSpin = 0.0F;
-            this.yawSpin = 0.0F;
+        if (this.handleWaterMovement()) {
+            if (this.motionY < -0.0) {
+                this.motionY += 0.08;
+            } else {
+                this.motionY *= 0.8;
+            }
+
+            this.motionX *= 0.99;
+            this.motionZ *= 0.99;
+
+            this.pitchSpin *= 0.8F;
+            this.yawSpin *= 0.8F;
         }
 
-        if (this.onGround || this.handleWaterMovement()) {
+        if (this.onGround) {
             this.rotationPitch += (-90F - (this.rotationPitch % 360F)) / 2;
-            this.motionY *= 0.8D;
-            this.motionX *= 0.8D;
-            this.motionZ *= 0.8D;
+            this.motionY *= 0.8;
+            this.motionX *= 0.8;
+            this.motionZ *= 0.8;
         } else {
             this.rotationPitch += this.pitchSpin;
             this.rotationYaw += this.yawSpin;

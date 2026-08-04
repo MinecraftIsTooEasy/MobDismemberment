@@ -36,6 +36,7 @@ public class MDEntityRenderer {
 //        registry.register(EntityGibSnowMan.class, new RenderGibBase(new ModelGibSnowMan(), new ResourceLocation("textures/entity/snowman.png")));
         registry.register(EntityGibVillager.class, new RenderGibBase(new ModelGibVillager(), new ResourceLocation("textures/entity/villager/villager.png")));
 //        registry.register(EntityGibWither.class, new RenderGibBase(new ModelGibWither(), new ResourceLocation("textures/entity/wither/wither.png")));
+        registry.register(EntityGibZombieVillager.class, new RenderGibBase(new ModelGibZombieVillager(), new ResourceLocation("textures/entity/zombie/villager.png")));
         registry.register(EntityGibZombie.class, new RenderGibBase(new ModelGibZombie(), new ResourceLocation("textures/entity/zombie/zombie.png")));
         registry.register(EntityGibWitch.class, new RenderGibBase(new ModelGibWitch(), new ResourceLocation("textures/entity/witch.png")));
 //        registry.register(EntityGibIronGolem.class, new RenderGibBase(new ModelGibIronGolem(), new ResourceLocation("textures/entity/iron_golem.png")));

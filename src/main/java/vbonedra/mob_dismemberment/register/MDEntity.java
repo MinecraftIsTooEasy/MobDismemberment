@@ -31,6 +31,7 @@ public class MDEntity {
 //        registry.register(EntityGibSnowMan.class, MobDismembermentMod.MOD_ID, "EntityGibSnowMan", IdUtil.getNextEntityID());
         registry.register(EntityGibVillager.class, MobDismembermentMod.MOD_ID, "EntityGibVillager", IdUtil.getNextEntityID());
 //        registry.register(EntityGibWither.class, MobDismembermentMod.MOD_ID, "EntityGibWither", IdUtil.getNextEntityID());
+        registry.register(EntityGibZombieVillager.class, MobDismembermentMod.MOD_ID, "EntityGibZombieVillager", IdUtil.getNextEntityID());
         registry.register(EntityGibZombie.class, MobDismembermentMod.MOD_ID, "EntityGibZombie", IdUtil.getNextEntityID());
         registry.register(EntityGibWitch.class, MobDismembermentMod.MOD_ID, "EntityGibWitch", IdUtil.getNextEntityID());
 //        registry.register(EntityGibIronGolem.class, MobDismembermentMod.MOD_ID, "EntityGibIronGolem", IdUtil.getNextEntityID());

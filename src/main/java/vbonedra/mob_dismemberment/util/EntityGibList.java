@@ -60,7 +60,16 @@ public class EntityGibList {
         if (RenderArachnid.class.isAssignableFrom(renderClass)) return new GibData(EntityGibArachnid.class, new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}, true, 0.5F, 0.5F, 0.0F, 1, 1.2F);
         if (renderClass == RenderBat.class) return new GibData(EntityGibBat.class, new int[]{0, 1}, true, 1.0F, 0.0F, 0.0F, 1, 0.7F);
 //        if (renderClass == RenderSnowMan.class) return new GibData(EntityGibSnowMan.class, new int[]{0, 1, 2, 3, 4, 5}, false, 0.0F, 0.0F, 0.0F, 0, 1.2F);
-        if (renderClass == RenderZombie.class) return new GibData(EntityGibZombie.class, new int[]{0, 1, 2, 3, 4}, true, 0.9F, 0.0F, 0.1F, 1, 1.2F);
+
+        if (renderClass == RenderZombie.class) {
+            if (living instanceof EntityZombie zombie) {
+                if (zombie.isVillager()) {
+                    return new GibData(EntityGibZombieVillager.class, new int[]{0, 1, 2, 3, 4, 5}, true, 0.9F, 0.0F, 0.1F, 1, 1.2F);
+                }
+            }
+            return new GibData(EntityGibZombie.class, new int[]{0, 1, 2, 3, 4, 5}, true, 0.9F, 0.0F, 0.1F, 1, 1.2F);
+        }
+//
 //        if (renderClass == RenderGiantZombie.class) return new GibData(EntityGibZombie.class, new int[]{0, 1, 2, 3, 4, 5}, true, 0.2F, 0.3F, 0.2F, 1, 1.2F);
         if (renderClass == RenderVillager.class) return new GibData(EntityGibVillager.class, new int[]{0, 1, 2, 3, 4, 5}, true, 1.0F, 0.0F, 0.0F, 1, 1.2F);
 //        if (renderClass == RenderWither.class) return new GibData(EntityGibWither.class, new int[]{0, 1, 2, 3, 4}, false, 0.0F, 0.0F, 0.0F, 0, 1.2F);
