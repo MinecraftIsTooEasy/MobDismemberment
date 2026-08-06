@@ -12,9 +12,8 @@ Keep in mind that this mod isn't perfect yet, it has some known minor bugs and m
 
 ## Update v1.0.0 plans:
 - Fix Sheep gib texture
-- Test WAILA mod compatibility, gib might be treated as normal mob therefore might have tooltip with name and other properties
 - Test server compatibility
-- Test mod compatibility with custom mobs and modified vanilla mob textures
+- Fix how textures pulled, right now if other mods change them on the fly like HaTE does with celestial types gib have vanilla mob texture
 - Add missing mob models support: SnowMan, IronGolem, EnderDragon, Horse, Giant Zombie and Wither + models from other mods if any important ones would be found
 - Fix how Villager gib spawn, right now it spawns only and only if there's no Zombie nearby, yet it must check not for nearby mobs but for conversion to Zombie Villager
 - Add Bat wing parts gib, right now Bat drop only head gib and body gib

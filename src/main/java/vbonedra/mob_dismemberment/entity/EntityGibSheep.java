@@ -1,14 +1,11 @@
 package vbonedra.mob_dismemberment.entity;
-
 import net.minecraft.Entity;
 import net.minecraft.EntityLivingBase;
 import net.minecraft.World;
-
 public class EntityGibSheep extends EntityGibBase {
     public EntityGibSheep(World world) {
         super(world);
     }
-
     public EntityGibSheep(World world, EntityLivingBase gibParent, int gibType, Entity explosion_source) {
         super(world, gibParent, gibType, explosion_source, 0.4F, 0.4F, 0.0D);
         double startX = gibParent.posX;
@@ -16,19 +13,17 @@ public class EntityGibSheep extends EntityGibBase {
         double startZ = gibParent.posZ;
         float yawOffset = gibParent.renderYawOffset;
         double mathYaw = Math.toRadians(yawOffset);
-
-        // gibType: 0 = Head, 1 = Body, 2 = Back Left Leg, 3 = Back Right Leg, 4 = Front Left Leg, 5 = Front Right Leg
         if (gibType == 0) {
             this.setSize(0.45F, 0.45F);
             this.rotationYaw = gibParent.rotationYaw;
             startX += 0.5D * Math.sin(mathYaw);
             startZ -= 0.5D * Math.cos(mathYaw);
-            startY += 1.125D;
+            startY += 0.9375D;
         } else if (gibType == 1) {
             this.setSize(0.65F, 0.65F);
             startX -= 0.125D * Math.sin(mathYaw);
             startZ += 0.125D * Math.cos(mathYaw);
-            startY += 1.1875D;
+            startY += 0.6875D;
         } else {
             this.setSize(0.25F, 0.4F);
             double sideOffset = 0.1875D;
@@ -42,7 +37,6 @@ public class EntityGibSheep extends EntityGibBase {
             startZ -= forwardOffset * Math.cos(mathYaw);
             startY += 0.375D;
         }
-
         this.setPosition(startX, startY, startZ);
         this.setLocationAndAngles(startX, startY, startZ, this.rotationYaw, this.rotationPitch);
         this.prevPosX = this.posX;
@@ -52,3 +46,4 @@ public class EntityGibSheep extends EntityGibBase {
         this.prevRotationPitch = this.rotationPitch;
     }
 }
+
