@@ -1,7 +1,6 @@
 accessWidener v2 named
 
-#accessible field net/minecraft/Entity rand Ljava/util/Random;
-#accessible field net/minecraft/RenderManager entityRenderMap Ljava/util/Map;
-
 accessible field net/minecraft/Render use_glowing_texture Z
 accessible method net/minecraft/Render getEntityTexture (Lnet/minecraft/Entity;)Lnet/minecraft/ResourceLocation;
+
+accessible method net/minecraft/RendererLivingEntity preRenderCallback (Lnet/minecraft/EntityLivingBase;F)V

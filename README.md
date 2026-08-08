@@ -11,15 +11,12 @@ Keep in mind that this mod isn't perfect yet, it has some known minor bugs and m
 ###### This mod is inspired by IChun's Mob Dismemberment which added only zombie, skeleton and creeper body parts, but this mod extends it to almost all mobs.
 
 ## Update v1.0.0 plans:
-- Fix Sheep gib texture
 - Test server compatibility
-- Fix how textures pulled, right now if other mods change them on the fly like HaTE does with celestial types gib have vanilla mob texture
 - Add missing mob models support: SnowMan, IronGolem, EnderDragon, Horse, Giant Zombie and Wither + models from other mods if any important ones would be found
-- Fix how Villager gib spawn, right now it spawns only and only if there's no Zombie nearby, yet it must check not for nearby mobs but for conversion to Zombie Villager
+- Fix how Villager gib spawns, right now it spawns only and only if there's no Zombie nearby, yet it must check not for nearby mobs but for conversion to Zombie Villager
 - Add Bat wing parts gib, right now Bat drop only head gib and body gib
 
 ### Long term plans:
 - Split mod into 2 mods, 1st for client only as it is right now and 2nd for client and server so gib would be saved to world and would be interactable with blocks like Tripwire and Pressure Plate
 - Mob Amputation mod: when mob attacked by player in specific area of model it could drop its gib part, for example player could attack Zombie into head with Battle Axe, and it would fall of with blood splashing from Zombie's neck and Zombie lowly losing health, when player attacks hand, Zombie would lose base damage, when leg attacked Zombie would either move slower ir fall on the ground and start crawling
 - Blood and Gore mod: blood particles, meat clump entities and many other things appear when entities get damaged, meat clump could replace some gib, hurt player loses blood
-  

@@ -1,17 +1,6 @@
 package vbonedra.mob_dismemberment.event;
 
-import net.minecraft.Entity;
-import net.minecraft.EntityLivingBase;
-import net.minecraft.EntityCreeper;
-import net.minecraft.EntityTNTPrimed;
-import net.minecraft.EntityMinecartTNT;
-import net.minecraft.EntityGelatinousCube;
-import net.minecraft.EntityMagmaCube;
-import net.minecraft.EntityVillager;
-import net.minecraft.MathHelper;
-import net.minecraft.Minecraft;
-import net.minecraft.World;
-import net.minecraft.WorldClient;
+import net.minecraft.*;
 import vbonedra.mob_dismemberment.entity.EntityGibBase;
 import vbonedra.mob_dismemberment.particle.ParticleBlood;
 import vbonedra.mob_dismemberment.util.EntityGibList;
@@ -24,7 +13,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 
-public class EventHandlerMain {
+public class EventHandlerClient {
     public HashMap<EntityLivingBase, Integer> dismemberTimeout = new HashMap<>();
     public HashMap<Entity, Integer> exploTime = new HashMap<>();
     public ArrayList<Entity> explosionSources = new ArrayList<>();
@@ -42,13 +31,18 @@ public class EventHandlerMain {
                 if (entity.worldObj.difficultySetting == 0) {
                     return;
                 }
-                double searchRadius = 4.0D;
+                double searchRadius = 2.0D;
                 List closeEntities = entity.worldObj.getEntitiesWithinAABBExcludingEntity(entity, entity.boundingBox.expand(searchRadius, searchRadius, searchRadius));
                 if (closeEntities != null) {
                     List safeClose = new ArrayList<>(closeEntities);
                     for (Object obj : safeClose) {
-                        if (obj != null && obj.getClass().getName().contains("Zombie")) {
-                            return;
+                        if (obj instanceof EntityZombie zombie) {
+                            if (entity.worldObj.difficultySetting >= 2) {
+                                if (zombie.getHeldItem() instanceof ItemTool) {
+                                    continue;
+                                }
+                                return;
+                            }
                         }
                     }
                 }
@@ -85,18 +79,21 @@ public class EventHandlerMain {
                         continue;
                     }
                     if (living instanceof EntityVillager && living.worldObj != null) {
-                        if (living.worldObj.difficultySetting == 0) {
-                            continue;
-                        }
-                        double searchRadius = 4.0D;
+                        double searchRadius = 2.0D;
                         List closeEntities = living.worldObj.getEntitiesWithinAABBExcludingEntity(living, living.boundingBox.expand(searchRadius, searchRadius, searchRadius));
                         boolean infected = false;
                         if (closeEntities != null) {
                             List safeClose = new ArrayList<>(closeEntities);
                             for (Object obj : safeClose) {
-                                if (obj != null && obj.getClass().getName().contains("Zombie")) {
-                                    infected = true;
-                                    break;
+                                if (obj instanceof EntityZombie zombie) {
+
+                                    if (living.worldObj.difficultySetting >= 2) {
+                                        if (zombie.getHeldItem() instanceof ItemTool) {
+                                            continue;
+                                        }
+                                        infected = true;
+                                        break;
+                                    }
                                 }
                             }
                         }

@@ -11,8 +11,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MinecraftMixin {
     @Inject(method = "runTick", at = @At("RETURN"))
     private void injectRunTick(CallbackInfo ci) {
-        if (MobDismembermentMod.EventHandlerMain != null) {
-            MobDismembermentMod.EventHandlerMain.worldTick();
+        if (MobDismembermentMod.EventHandlerClient != null) {
+            MobDismembermentMod.EventHandlerClient.worldTick();
         }
     }
 }

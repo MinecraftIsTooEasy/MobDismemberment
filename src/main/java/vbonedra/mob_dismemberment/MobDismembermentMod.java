@@ -4,7 +4,7 @@ import fi.dy.masa.malilib.config.ConfigManager;
 import net.fabricmc.api.ClientModInitializer;
 import net.xiaoyu233.fml.reload.event.MITEEvents;
 import vbonedra.mob_dismemberment.config.MDConfig;
-import vbonedra.mob_dismemberment.event.EventHandlerMain;
+import vbonedra.mob_dismemberment.event.EventHandlerClient;
 
 import net.xiaoyu233.fml.ModResourceManager;
 
@@ -20,7 +20,7 @@ public class MobDismembermentMod implements ClientModInitializer
     public static final Logger MDLOGGER = LogManager.getLogger(MOD_NAME);
 
     public static MobDismembermentMod instance;
-    public static EventHandlerMain EventHandlerMain;
+    public static EventHandlerClient EventHandlerClient;
 
 
     @Override
@@ -36,7 +36,7 @@ public class MobDismembermentMod implements ClientModInitializer
         ConfigManager.getInstance().registerConfig(MDConfig.getInstance());
 
         // Handlers
-        EventHandlerMain = new EventHandlerMain();
+        EventHandlerClient = new EventHandlerClient();
 
 
         MITEEvents.MITE_EVENT_BUS.register(new MobDismembermentRegistryInit());

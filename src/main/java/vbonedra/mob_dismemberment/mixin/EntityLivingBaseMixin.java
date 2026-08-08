@@ -14,8 +14,8 @@ public class EntityLivingBaseMixin {
     private void injectOnDeath(DamageSource source, CallbackInfo ci) {
         EntityLivingBase entity = (EntityLivingBase) (Object) this;
         if (entity.worldObj != null && entity.worldObj.isWorldClient()) {
-            if (MobDismembermentMod.EventHandlerMain != null) {
-                MobDismembermentMod.EventHandlerMain.onLivingDeath(entity);
+            if (MobDismembermentMod.EventHandlerClient != null) {
+                MobDismembermentMod.EventHandlerClient.onLivingDeath(entity);
             }
         }
     }

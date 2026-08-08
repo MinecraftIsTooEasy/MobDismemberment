@@ -14,6 +14,7 @@ public class MDConfig extends SimpleConfigs {
     public static final ConfigInteger gibGroundTime = new ConfigInteger("Gib Ground Time", 600, 0, 24000);
     public static final ConfigBoolean gibFadeoutTransparency = new ConfigBoolean("Gib Fadeout Transparency", true);
     public static final ConfigBoolean gibFadeoutScale = new ConfigBoolean("Gib Fadeout Scale", true);
+    public static final ConfigBoolean gibFadeoutBlackout = new ConfigBoolean("Gib Fadeout Blackout", true);
     public static final ConfigBoolean blood = new ConfigBoolean("Blood", true);
     public static final ConfigInteger bloodTime = new ConfigInteger("Blood Time", 600, 0, 24000);
     public static final ConfigInteger bloodCount = new ConfigInteger("Blood Count", 250, 1, 1000);
@@ -46,6 +47,7 @@ public class MDConfig extends SimpleConfigs {
                 gibGroundTime,
                 gibFadeoutTransparency,
                 gibFadeoutScale,
+                gibFadeoutBlackout,
                 gibPushing,
                 blood,
                 bloodTime,
